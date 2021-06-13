@@ -11,10 +11,10 @@ function Cube() {
     // 1- define scene, camera and renderer
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
-      75, // field-of-view in degrees
+      75, // viw-angle / field-of-view in degrees
       window.innerWidth / window.innerHeight, // aspect
-      0.1, // near
-      1000 // far
+      0.1, // near clip
+      1000 // far clip
     );
     const renderer = new THREE.WebGLRenderer();
 
@@ -30,17 +30,17 @@ function Cube() {
     const material = new THREE.MeshBasicMaterial({
       color: 0x00ff00,
       wireframe: true,
-    }); // not affected by lights
-    const cube = new THREE.Mesh(geometry, material);
+    }); // this mesh material not affected by lights
+    const cube = new THREE.Mesh(geometry, material); // mesh (v) them together
 
-    // 4- add the cube to the scene and move the camera out of the way
+    // 4- add the cube to the scene and move the camera out of the way (set camera position)
     scene.add(cube);
     camera.position.z = 5;
 
-    // 5- render the scene with an animation loop
+    // 5- KEY: render the scene with an animation loop
     const animate = () => {
       requestAnimationFrame(animate); // init first frame
-      cube.rotation.x += 0.01; // rotate on every frame
+      cube.rotation.x += 0.01; // rotate on every frame - makes animation loop
       cube.rotation.y += 0.01;
       renderer.render(scene, camera); // render the renderer
     };

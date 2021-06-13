@@ -4,30 +4,30 @@
   */
 
 @font-face {
-  font-family: 'TrainOne';
-  src: url('../assets/fonts/TrainOne/TrainOne-Regular.ttf');
+  font-family: "TrainOne";
+  src: url("../assets/fonts/TrainOne/TrainOne-Regular.ttf");
 }
 
 @font-face {
-  font-family: 'Roboto';
-  src: url('../assets/fonts/Roboto/Roboto-Regular.ttf');
+  font-family: "Roboto";
+  src: url("../assets/fonts/Roboto/Roboto-Regular.ttf");
 }
 
 @font-face {
-  font-family: 'Roboto';
-  src: url('../assets/fonts/Roboto/Roboto-Bold.ttf');
+  font-family: "Roboto";
+  src: url("../assets/fonts/Roboto/Roboto-Bold.ttf");
   font-weight: bold;
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   margin: 0;
 }
 
 h1,
 h2,
 h3 {
-  font-family: 'TrainOne', sans-serif;
+  font-family: "TrainOne", sans-serif;
 }
 
 .map-header {

@@ -53,6 +53,19 @@ function Globe() {
       renderer.render(scene, camera);
     };
     animate();
+
+    // 6- handle resize // TODO: do this in a more react-y way
+    const handleResize = () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    };
+
+    // direct DOM method of adding event listener to window
+    window.addEventListener("resize", handleResize);
+
+    // useEffect cleanup // todo: remove the event listener too ?!
+    return () => current.removeChild(renderer.domElement);
   }, []);
 
   return <div ref={sceneRef}></div>;

@@ -35,7 +35,7 @@ function Cube() {
 
     // 4- add the cube to the scene and move the camera out of the way (set camera position)
     scene.add(cube);
-    camera.position.z = 5;
+    camera.position.z = 3;
 
     // 5- KEY: render the scene with an animation loop
     const animate = () => {

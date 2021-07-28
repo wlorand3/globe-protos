@@ -18,7 +18,7 @@ function Globe() {
     camera.position.set(0, 0, 500);
 
     const scene = new THREE.Scene();
-    // scene.background = new THREE.Color(0x000); // TODO: add stars as texture
+    // scene.background = new THREE.Color(0x000); // TODO: add stars image as texture
 
     // create renderer and add to DOM via ref
     const renderer = new THREE.WebGLRenderer();

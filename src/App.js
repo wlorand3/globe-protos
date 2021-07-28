@@ -5,7 +5,8 @@ import React from "react";
 // import Cube from "./components/Cube";
 // import Globe from "./components/Globe";
 // import ReactGlobe1 from "./components/ReactGlobe1";
-import GlobeGL from "./components/GlobeGL";
+// import GlobeGL from "./components/GlobeGL";
+import GlobeArcs from "./components/GlobeArcs";
 
 // styles
 import "./styles/global-styles.css";
@@ -19,7 +20,8 @@ function App() {
       {/* <Cube /> */}
       {/* <Globe /> */}
       {/* <ReactGlobe1 /> */}
-      <GlobeGL />
+      {/* <GlobeGL /> */}
+      <GlobeArcs />
     </>
   );
 }

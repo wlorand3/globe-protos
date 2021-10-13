@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import Globe from "react-globe.gl";
+import { useHotkeys } from "react-hotkeys-hook";
 
 function GlobeArcs() {
   const globeEl = useRef();
@@ -13,10 +14,88 @@ function GlobeArcs() {
     endLng: (Math.random() - 0.5) * 360,
   }));
 
+  let currentLat = 46.8772;
+  let currentLng = -96.7898;
+  // const altitude = 2.5;
+
   useEffect(() => {
-    const mapCenter = { lat: 59.9139, lng: 10.7522, altitude: 2.5 }; // Oslo
-    globeEl.current.pointOfView(mapCenter, 4000);
-  }, []);
+    const globeCenter = {
+      lat: currentLat,
+      lng: currentLng,
+      // altitude: altitude,
+    }; // Fargo, SD
+    globeEl.current.pointOfView(globeCenter, 4000);
+  }, [currentLat, currentLng]);
+
+  useHotkeys("right", () => {
+    currentLng = currentLng + 45;
+    globeEl.current.pointOfView(
+      {
+        lat: currentLat,
+        lng: currentLng,
+        // altitude: altitude,
+      },
+      1000
+    );
+  });
+
+  useHotkeys("left", () => {
+    currentLng = currentLng - 45;
+    globeEl.current.pointOfView(
+      {
+        lat: currentLat,
+        lng: currentLng,
+        // altitude: altitude,
+      },
+      1000
+    );
+  });
+
+  useHotkeys(
+    "up",
+    () => {
+      // globe doesn't fully rotate to the poles, so if lat = 90, oscillate back towards the equator
+      currentLat = currentLat !== -90 ? currentLat - 30 : currentLat + 30;
+      globeEl.current.pointOfView(
+        {
+          lat: currentLat,
+          lng: currentLng,
+          // altitude: altitude,
+        },
+        1000
+      );
+    },
+    {
+      keyup: true,
+      keydown: false,
+    }
+  );
+
+  useHotkeys("down", () => {
+    currentLat = currentLat !== 90 ? currentLat + 30 : currentLat - 30;
+    globeEl.current.pointOfView(
+      {
+        lat: currentLat,
+        lng: currentLng,
+        // altitude: altitude,
+      },
+      1000
+    );
+  });
+
+  // useHotkeys("up", () => alert("you hit up"));
+  // useHotkeys("right", () => alert("you hit right"));
+  // useHotkeys("down", () => alert("you hit down"));
+  // useHotkeys("left", () => alert("you hit left"));
+
+  // ALT
+  // case "up":
+  //       // globe doesn't fully rotate to the poles, so if lat = 90 || -90, oscillate back towards the equator
+  //       currentLat = currentLat === -90 ? currentLat + 30 : currentLat - 30;
+  //       break;
+  //     case "down":
+  //       currentLat = currentLat === 90 ? currentLat - 30 : currentLat + 30;
+  //       break;
 
   const tooltipHtml = () => {
     return `<div>
@@ -37,9 +116,9 @@ function GlobeArcs() {
         arcDashLength={0.3}
         arcDashGap={() => Math.random()}
         arcDashAnimateTime={4000}
-        arcAltitudeAutoScale={0.6}
+        arcAltitudeAutoScale={0.5}
         arcLabel={() => tooltipHtml()}
-        arcStroke={0.5}
+        arcStroke={0.75}
       />
     </div>
   );
